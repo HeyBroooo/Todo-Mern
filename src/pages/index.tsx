@@ -1,18 +1,18 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useContext, useState } from 'react'
-import { NotificationContext } from '../contexts/NotificationContext'
-import Content from '../components/HomeContent'
-import Header from '../components/Header'
-import ProjectModal from '../components/ProjectModal'
+import { NextPage } from 'next';
+import Head from 'next/head';
+import { useContext, useState } from 'react';
+import { NotificationContext } from '../contexts/NotificationContext';
+import Content from '../components/HomeContent';
+import Header from '../components/Header';
+import ProjectModal from '../components/ProjectModal';
 
 const Home: NextPage = () => {
+  const { notification } = useContext(NotificationContext);
+  const [modal, setModal] = useState<React.ReactNode>(null);
 
-  const {notification}    = useContext(NotificationContext)
-  const [modal, setModal] = useState(<></>)
-  const closeProjects = () => setModal(<></>)
-  const openProjects  = () => setModal(<ProjectModal closeModal={closeProjects} />)
-  
+  const closeProjects = () => setModal(null);
+  const openProjects = () => setModal(<ProjectModal closeModal={closeProjects} />);
+
   return (
     <div>
       <Head>
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       {modal}
       {notification}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
